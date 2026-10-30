@@ -3,3 +3,29 @@ WPFW OPDRACHT 3
 in deze opdracht heb ik Minimal api gebruikt om mijn blogposts en projecten op te slaan in de database
 
 ik gebruik hierbij migraties om de database aan te passen
+
+stappen
+
+1. gebruik deze commands:
+dotnet add package Microsoft.Extensions.Validation --version 10.0.0
+dotnet add package Microsoft.AspNetCore.OpenApi --version 10.0.0
+dotnet add package Swashbuckle.AspNetCore.SwaggerUI --version 10.2.3
+dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL --version 10.0.0
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 10.0.0
+```
+
+vul daarna dit in
+dotnet user-secrets init
+dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Host=localhost;Port=5432;Database=PortDB;Username=postgres;Password=nas5"
+dotnet restore
+dotnet tool install --global dotnet-ef --version 10.0.0
+dotnet ef database update
+dotnet run --launch-profile http
+
+verander alle oefenDB naar PortDB(verander voor de rest nog meer wat nodig is)
+
+maak daarna een migration, en update de database
+
+kijk daarna of het werkt
+
+doe dit later, haal het uit dit bestand als het nodig is
