@@ -17,7 +17,7 @@ public sealed class UpdateProjectRequest
     public string Category{get; init;} = string.Empty;
 
     [Required]
-    
+    [Range(typeof(DateOnly), "1888-01-01", "2100-12-31")]
     public DateOnly Date{get; init;}
 
 

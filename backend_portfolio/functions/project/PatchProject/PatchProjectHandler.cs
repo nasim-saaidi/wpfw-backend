@@ -6,7 +6,7 @@ namespace functions.PatchProject;
 public static class PatchProjectHandler
 {
     public static async Task<IResult> PatchProjectHandle(
-        int id, PatchProjectRequest request, OefenDB dbContext, 
+        int id, PatchProjectRequest request, PortDB dbContext, 
         CancellationToken cancellationToken
     )
     {

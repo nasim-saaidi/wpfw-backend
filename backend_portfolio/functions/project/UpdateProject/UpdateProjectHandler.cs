@@ -6,7 +6,7 @@ namespace functions.UpdateProject;
 public static class UpdateProjectHandler
 {
     public static async Task<IResult> UpdateProjectHandle(
-        int id, UpdateProjectRequest request, OefenDB dbContext, 
+        int id, UpdateProjectRequest request, PortDB dbContext, 
         CancellationToken cancellationToken
     )
     {

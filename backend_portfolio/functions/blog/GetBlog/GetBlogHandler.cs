@@ -6,7 +6,7 @@ namespace functions.GetBlog;
 public static class GetBlogHandler
 {
     public static async Task<IResult> GetBlogHandle(
-        int id, OefenDB dbContext, CancellationToken cancellationToken)
+        int id, PortDB dbContext, CancellationToken cancellationToken)
     {
         var blog = await dbContext.Blogs
         .Where(blog => blog.Id == id)

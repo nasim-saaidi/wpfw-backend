@@ -6,7 +6,7 @@ namespace functions.DeleteBlog;
 public static class DeleteBlogHandler
 {
     public static async Task<IResult> DeleteBlogHandle(
-        int id, OefenDB dbContext, CancellationToken cancellationToken)
+        int id, PortDB dbContext, CancellationToken cancellationToken)
     {
      var blog = await dbContext.Blogs.FirstOrDefaultAsync(blog => blog.Id == id, cancellationToken);
 

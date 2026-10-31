@@ -6,7 +6,7 @@ namespace functions.PatchBlog;
 public static class PatchBlogHandler
 {
     public static async Task<IResult> PatchBlogHandle(
-        int id, PatchBlogRequest request, OefenDB dbContext, 
+        int id, PatchBlogRequest request, PortDB dbContext, 
         CancellationToken cancellationToken
     )
     {

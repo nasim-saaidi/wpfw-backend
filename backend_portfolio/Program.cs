@@ -12,7 +12,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 builder.Services.AddOpenApi();
 builder.Services.AddValidation();
-builder.Services.AddDbContext<OefenDB>(
+builder.Services.AddDbContext<PortDB>(
     options => options.UseNpgsql(connectionString));
 
 
@@ -26,7 +26,7 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.UseSwaggerUI(options =>
-        options.SwaggerEndpoint("/openapi/v1.json", "oefendb"));
+        options.SwaggerEndpoint("/openapi/v1.json", "PortDB"));
 
 }
 

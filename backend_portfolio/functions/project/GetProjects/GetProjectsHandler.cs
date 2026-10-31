@@ -7,7 +7,7 @@ public static class GetProjectsHandler
 
 {
     public static async Task<IResult> GetProjectsHandle(
-         OefenDB dbContext, CancellationToken cancellationToken)
+         PortDB dbContext, CancellationToken cancellationToken)
     {
         var projects = await dbContext.Projects
         .AsNoTracking()

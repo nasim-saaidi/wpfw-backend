@@ -6,7 +6,7 @@ namespace functions.UpdateBlog;
 public static class UpdateBlogHandler
 {
     public static async Task<IResult> UpdateBlogHandle(
-        int id, UpdateBlogRequest request, OefenDB dbContext, 
+        int id, UpdateBlogRequest request, PortDB dbContext, 
         CancellationToken cancellationToken
     )
     {

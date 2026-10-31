@@ -6,7 +6,7 @@ namespace functions.GetProject;
 public static class GetProjectHandler
 {
     public static async Task<IResult> GetProjectHandle(
-        int id, OefenDB dbContext, CancellationToken cancellationToken)
+        int id, PortDB dbContext, CancellationToken cancellationToken)
     {
         var project = await dbContext.Projects
         .Where(project => project.Id == id)

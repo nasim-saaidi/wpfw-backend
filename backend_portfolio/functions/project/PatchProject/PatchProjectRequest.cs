@@ -14,7 +14,7 @@ public sealed class PatchProjectRequest
     
     public string? Category{get; init;}
 
-    
+    [Range(typeof(DateOnly), "1888-01-01", "2100-12-31")]
     public DateOnly? Date{get; init;}
 
 

@@ -7,7 +7,7 @@ public static class GetBlogsHandler
 
 {
     public static async Task<IResult> GetBlogsHandle(
-         OefenDB dbContext, CancellationToken cancellationToken)
+         PortDB dbContext, CancellationToken cancellationToken)
     {
         var blogs = await dbContext.Blogs
         .AsNoTracking()

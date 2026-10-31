@@ -5,9 +5,9 @@ using Models.blog;
 
 
 namespace main.db;
-public sealed class OefenDB : DbContext
+public sealed class PortDB : DbContext
 {
-         public OefenDB(DbContextOptions<OefenDB> options) : base(options) {}
+         public PortDB(DbContextOptions<PortDB> options) : base(options) {}
          public DbSet<Project> Projects => Set<Project>();
          public DbSet<Blog> Blogs => Set<Blog>();
 

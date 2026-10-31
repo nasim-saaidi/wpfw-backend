@@ -7,7 +7,7 @@ public static class CreateBlogHandler
 
 {
     public static async Task<IResult> CreateBlogHandle(
-        CreateBlogRequest request, OefenDB dbContext, CancellationToken cancellationToken)
+        CreateBlogRequest request, PortDB dbContext, CancellationToken cancellationToken)
     {
         var blog = new Blog { Title = request.Title,  Content = request.Content, Date = request.Date};
         dbContext.Blogs.Add(blog);
