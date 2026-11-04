@@ -1,31 +1,82 @@
 WPFW OPDRACHT 3
 
-in deze opdracht heb ik Minimal api gebruikt om mijn blogposts en projecten op te slaan in de database
+Nasim Saaïdi, 25010743
 
-ik gebruik hierbij migraties om de database aan te passen
+github link:
+https://github.com/nasim-saaidi/wpfw-backend
 
-stappen
 
-1. gebruik deze commands:
+
+.net versie: 
+10
+
+gekozen stijl:
+
+minimal api, de reden dat ik minimal api gekozen heb is omdat ik meer kennis ermee hadt en het, tegenover controllers, in mijn mening, meer overzichtelijk is. 
+Je kan de endpoints verdelen per functie, dit geeft meer overzicht. Ook heeft het, in het algemeen, minder code
+
+codestructuur:
+backend_portfolio
+    data 
+        AppDBContext.cs - Maakt de database aan
+    functions
+        project
+                CreateProject
+                    bestanden om project aan te maken
+                DeleteProject
+                    bestanden om project te verwijderen
+                GetProject
+                    bestanden om een project op te halen
+                GetProjects
+                    bestanden om alle projecten op te halen
+                PatchProject
+                    bestanden om een project te patchen
+                UpdateProject
+                    bestanden om een project te updaten
+        blog
+                CreateBlog
+                    bestanden om een blog aan te maken
+                DeleteBlog
+                    bestanden om Blog te verwijderen
+                GetBlog
+                    bestanden om een Blog op te halen
+                GetBlog
+                    bestanden om alle Blog op te halen
+                PatchBlog
+                    bestanden om een Blog te patchen
+                UpdateBlog
+                    bestanden om een Blog te updaten
+        Endpoints.cs
+    Models - dit zijn de entity's die gebruikt gaan worden 
+        blog.cs
+        project.cs
+de grootste 4 bestanden binnen een function zijn:
+response: dit beschrijft wat er van de api teruggestuurd wordt na de request
+request: dit beschrijft welke gegevens naar de api gestuurd worden
+handler: dit bepaald wat er gedaan wordt met de ontvangen informatie(bijv. ophalen, verwijderen of veranderen)
+endpoint: dit bepaalt bij welke route de handler wordt aangeroepen
+
+
+
+sql server configureren/db aanmaken:
+
+(vul dit eerst in)
+
 dotnet add package Microsoft.Extensions.Validation --version 10.0.0
 dotnet add package Microsoft.AspNetCore.OpenApi --version 10.0.0
 dotnet add package Swashbuckle.AspNetCore.SwaggerUI --version 10.2.3
 dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL --version 10.0.0
 dotnet add package Microsoft.EntityFrameworkCore.Design --version 10.0.0
-```
 
-vul daarna dit in
+vul  dit in
 dotnet user-secrets init
-dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Host=localhost;Port=5432;Database=PortDB;Username=postgres;Password=nas5"
+dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Host=localhost;Port=6767;Database=PortDB;Username=postgres;Password=vb_Wach"
 dotnet restore
 dotnet tool install --global dotnet-ef --version 10.0.0
 dotnet ef database update
 dotnet run --launch-profile http
 
-verander alle oefenDB naar PortDB(verander voor de rest nog meer wat nodig is)
+programma starten:
 
-maak daarna een migration, en update de database
-
-kijk daarna of het werkt
-
-doe dit later, haal het uit dit bestand als het nodig is
+cd backend_portfolio; 
+dotnet run --launch-profile http
