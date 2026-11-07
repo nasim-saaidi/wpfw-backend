@@ -9,7 +9,7 @@ public static class CreateBlogHandler
     public static async Task<IResult> CreateBlogHandle(
         CreateBlogRequest request, PortDB dbContext, CancellationToken cancellationToken)
     {
-        var blog = new Blog { Title = request.Title,  Content = request.Content, Date = request.Date};
+        var blog = new Blog { Title = request.Title,  Content = request.Content, Date = DateTime.SpecifyKind(request.Date, DateTimeKind.Utc), InternalNotes = request.InternalNotes};
         dbContext.Blogs.Add(blog);
         await dbContext.SaveChangesAsync(cancellationToken);
 

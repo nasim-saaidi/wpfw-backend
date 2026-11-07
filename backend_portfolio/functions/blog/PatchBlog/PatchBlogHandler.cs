@@ -21,6 +21,7 @@ public static class PatchBlogHandler
         if(request.Title is not null) blog.Title = request.Title;
         if(request.Content is not null) blog.Content = request.Content;
         if(request.Date.HasValue) blog.Date = request.Date.Value;
+        if(request.InternalNotes is not null) blog.InternalNotes = request.InternalNotes;
 
         await dbContext.SaveChangesAsync(cancellationToken);
 

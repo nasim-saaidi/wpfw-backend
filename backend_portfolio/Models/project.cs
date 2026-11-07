@@ -17,4 +17,6 @@ public class Project
     
     public string Img_alt{get; set;}
     public string Img_src{get; set;}
+
+    
 }

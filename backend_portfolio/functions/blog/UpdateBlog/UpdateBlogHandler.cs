@@ -22,6 +22,7 @@ public static class UpdateBlogHandler
         blog.Title = request.Title;
         blog.Content = request.Content;
         blog.Date = request.Date;
+        blog.InternalNotes = request.InternalNotes;
         await dbContext.SaveChangesAsync(cancellationToken);
 
        return TypedResults.Ok(blog);

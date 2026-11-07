@@ -34,6 +34,7 @@ public sealed class PortDB : DbContext
         blog.Property(p => p.Title).IsRequired();
         blog.Property(p => p.Content).IsRequired();
         blog.Property(p => p.Date).IsRequired();
+        blog.Property(p => p.InternalNotes);
         });
     }
 }

@@ -12,13 +12,13 @@ https://github.com/nasim-saaidi/wpfw-backend
 
 gekozen stijl:
 
-minimal api, de reden dat ik minimal api gekozen heb is omdat ik meer kennis ermee hadt en het, tegenover controllers, in mijn mening, meer overzichtelijk is. 
-Je kan de endpoints verdelen per functie, dit geeft meer overzicht. Ook heeft het, in het algemeen, minder code
+minimal api, de reden dat ik minimal api gekozen heb is omdat ik meer kennis ermee hadt en het, tegenover controllers, meer overzichtelijk is. 
+Je kan de endpoints verdelen per functie, dit geeft meer overzicht. Ook heeft het minder code. Het vermindert boilerplatecode en heeft een flexibere structuur.
 
 codestructuur:
 backend_portfolio
     data 
-        AppDBContext.cs - Maakt de database aan
+        PORTDB.cs - Maakt de database aan en configureert het opstellen en versturen van queries naar de database
     functions
         project
                 CreateProject
@@ -51,12 +51,10 @@ backend_portfolio
         blog.cs
         project.cs
 de grootste 4 bestanden binnen een function zijn:
-response: dit beschrijft wat er van de api teruggestuurd wordt na de request
+response: dit beschrijft wat er van de api teruggestuurd
 request: dit beschrijft welke gegevens naar de api gestuurd worden
 handler: dit bepaald wat er gedaan wordt met de ontvangen informatie(bijv. ophalen, verwijderen of veranderen)
 endpoint: dit bepaalt bij welke route de handler wordt aangeroepen
-
-
 
 sql server configureren/db aanmaken:
 
@@ -70,13 +68,13 @@ dotnet add package Microsoft.EntityFrameworkCore.Design --version 10.0.0
 
 vul  dit in
 dotnet user-secrets init
-dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Host=localhost;Port=6767;Database=PortDB;Username=postgres;Password=vb_Wach"
+dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Host=localhost;Port=1200;Database=PortDB;Username=postgres;Password=JOUW_WACHTWOORD"
 dotnet restore
 dotnet tool install --global dotnet-ef --version 10.0.0
 dotnet ef database update
-dotnet run --launch-profile http
+dotnet run --launch-profile https
 
 programma starten:
 
 cd backend_portfolio; 
-dotnet run --launch-profile http
+dotnet watch --launch-profile https     
