@@ -12,8 +12,8 @@ using main.db;
 namespace backend_portfolio.Migrations
 {
     [DbContext(typeof(PortDB))]
-    [Migration("20261106130136_addauthormigration")]
-    partial class addauthormigration
+    [Migration("20261107204215_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,16 +33,16 @@ namespace backend_portfolio.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Author")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("InternalNotes")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Title")
                         .IsRequired()

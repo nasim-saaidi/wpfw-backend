@@ -25,6 +25,6 @@ public static class UpdateBlogHandler
         blog.InternalNotes = request.InternalNotes;
         await dbContext.SaveChangesAsync(cancellationToken);
 
-       return TypedResults.Ok(blog);
+       return TypedResults.NoContent();
     }
 }

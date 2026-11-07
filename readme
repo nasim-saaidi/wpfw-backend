@@ -51,7 +51,7 @@ backend_portfolio
         blog.cs
         project.cs
 de grootste 4 bestanden binnen een function zijn:
-response: dit beschrijft wat er van de api teruggestuurd
+response: dit beschrijft wat er van de api teruggestuurd wordt
 request: dit beschrijft welke gegevens naar de api gestuurd worden
 handler: dit bepaald wat er gedaan wordt met de ontvangen informatie(bijv. ophalen, verwijderen of veranderen)
 endpoint: dit bepaalt bij welke route de handler wordt aangeroepen
@@ -60,21 +60,24 @@ sql server configureren/db aanmaken:
 
 (vul dit eerst in)
 
+cd backend_portfolio
+
 dotnet add package Microsoft.Extensions.Validation --version 10.0.0
 dotnet add package Microsoft.AspNetCore.OpenApi --version 10.0.0
 dotnet add package Swashbuckle.AspNetCore.SwaggerUI --version 10.2.3
 dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL --version 10.0.0
 dotnet add package Microsoft.EntityFrameworkCore.Design --version 10.0.0
 
-vul  dit in
+
+maak een database genaamd PortDB aan in pgadmin
+
+vul  dit in de terminal
 dotnet user-secrets init
-dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Host=localhost;Port=1200;Database=PortDB;Username=postgres;Password=JOUW_WACHTWOORD"
+dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Host=localhost;Port=5432;Database=PortDB;Username=postgres;Password=nas5"
 dotnet restore
 dotnet tool install --global dotnet-ef --version 10.0.0
 dotnet ef database update
-dotnet run --launch-profile https
 
-programma starten:
+start de programma hiermee:
 
-cd backend_portfolio; 
 dotnet watch --launch-profile https     

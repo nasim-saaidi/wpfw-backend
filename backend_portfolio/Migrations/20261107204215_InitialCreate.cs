@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace backend_portfolio.Migrations
 {
     /// <inheritdoc />
-    public partial class addauthormigration : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -21,7 +21,7 @@ namespace backend_portfolio.Migrations
                     Title = table.Column<string>(type: "text", nullable: false),
                     Content = table.Column<string>(type: "text", nullable: false),
                     Date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Author = table.Column<string>(type: "text", nullable: false)
+                    InternalNotes = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {

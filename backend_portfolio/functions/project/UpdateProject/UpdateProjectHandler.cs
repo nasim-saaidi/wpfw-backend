@@ -28,6 +28,6 @@ public static class UpdateProjectHandler
         project.Img_src = request.Img_src;
         await dbContext.SaveChangesAsync(cancellationToken);
 
-       return TypedResults.Ok(project);
+       return TypedResults.NoContent();
     }
 }
