@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nasim\\OneDrive\\Documenten\\hbo jaar 2 coderen\\misc\\wpfw-backend\\backend_portfolio\\backend_portfolio.csproj": {}
+    "C:\\Users\\Gebruiker\\coderen\\wpfw-backend\\backend_portfolio\\backend_portfolio.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nasim\\OneDrive\\Documenten\\hbo jaar 2 coderen\\misc\\wpfw-backend\\backend_portfolio\\backend_portfolio.csproj": {
+    "C:\\Users\\Gebruiker\\coderen\\wpfw-backend\\backend_portfolio\\backend_portfolio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nasim\\OneDrive\\Documenten\\hbo jaar 2 coderen\\misc\\wpfw-backend\\backend_portfolio\\backend_portfolio.csproj",
+        "projectUniqueName": "C:\\Users\\Gebruiker\\coderen\\wpfw-backend\\backend_portfolio\\backend_portfolio.csproj",
         "projectName": "backend_portfolio",
-        "projectPath": "C:\\Users\\nasim\\OneDrive\\Documenten\\hbo jaar 2 coderen\\misc\\wpfw-backend\\backend_portfolio\\backend_portfolio.csproj",
-        "packagesPath": "C:\\Users\\nasim\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nasim\\OneDrive\\Documenten\\hbo jaar 2 coderen\\misc\\wpfw-backend\\backend_portfolio\\obj\\",
+        "projectPath": "C:\\Users\\Gebruiker\\coderen\\wpfw-backend\\backend_portfolio\\backend_portfolio.csproj",
+        "packagesPath": "C:\\Users\\Gebruiker\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Gebruiker\\coderen\\wpfw-backend\\backend_portfolio\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\nasim\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Gebruiker\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
