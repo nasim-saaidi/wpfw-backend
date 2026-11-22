@@ -360,3 +360,4 @@ C:\Users\nasim\OneDrive\Documenten\hbo jaar 2 coderen\misc\wpfw-backend\backend_
 C:\Users\nasim\OneDrive\Documenten\hbo jaar 2 coderen\misc\wpfw-backend\backend_portfolio\obj\Debug\net10.0\backend_portfolio.pdb
 C:\Users\nasim\OneDrive\Documenten\hbo jaar 2 coderen\misc\wpfw-backend\backend_portfolio\obj\Debug\net10.0\backend_portfolio.genruntimeconfig.cache
 C:\Users\nasim\OneDrive\Documenten\hbo jaar 2 coderen\misc\wpfw-backend\backend_portfolio\obj\Debug\net10.0\ref\backend_portfolio.dll
+C:\Users\Gebruiker\coderen\wpfw-backend\backend_portfolio\bin\Debug\net10.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll

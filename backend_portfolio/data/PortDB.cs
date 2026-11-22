@@ -1,12 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using Models.project;
 using Models.blog;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Models.user;
 
 
 
 namespace main.db;
-public sealed class PortDB : DbContext
+public sealed class PortDB : IdentityDbContext<User>
 {
+
          public PortDB(DbContextOptions<PortDB> options) : base(options) {}
          public DbSet<Project> Projects => Set<Project>();
          public DbSet<Blog> Blogs => Set<Blog>();
@@ -14,6 +17,7 @@ public sealed class PortDB : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<Project>(project =>
         {
         project.ToTable("Projects");
@@ -36,5 +40,6 @@ public sealed class PortDB : DbContext
         blog.Property(p => p.Date).IsRequired();
         blog.Property(p => p.InternalNotes);
         });
+        
     }
 }

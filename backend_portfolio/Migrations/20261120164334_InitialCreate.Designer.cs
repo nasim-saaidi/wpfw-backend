@@ -12,7 +12,7 @@ using main.db;
 namespace backend_portfolio.Migrations
 {
     [DbContext(typeof(PortDB))]
-    [Migration("20261107204215_InitialCreate")]
+    [Migration("20261120164334_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

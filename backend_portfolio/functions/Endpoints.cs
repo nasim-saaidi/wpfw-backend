@@ -12,6 +12,8 @@ using functions.GetBlog;
 using functions.UpdateBlog;
 using functions.PatchProject;
 using functions.PatchBlog;
+using functions.UserManager.RegisterUser;
+using Models.user;
 
 
 namespace functions.Endpoint;
@@ -22,6 +24,8 @@ public static class Endpoints
     {
         RouteGroupBuilder projectGroup = endpoints.MapGroup("/projects");
         RouteGroupBuilder blogGroup = endpoints.MapGroup("/blogs");
+        RouteGroupBuilder authGroup = endpoints.MapGroup("/auth");
+        RouteGroupBuilder UserManagerGroup = endpoints.MapGroup("/UserManager");
 
         projectGroup.MapCreateProjectEndpoint();
         projectGroup.MapGetProjectsEndpoint();
@@ -35,6 +39,10 @@ public static class Endpoints
         blogGroup.MapGetBlogEndpoint();
         blogGroup.MapUpdateBlogEndpoint();
         blogGroup.MapPatchBlogEndpoint();
+        authGroup.MapIdentityApi<User>();
+        UserManagerGroup.MapRegisterUserEndpoint();
+        
+        
 
         return endpoints;
     }

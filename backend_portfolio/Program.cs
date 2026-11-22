@@ -1,6 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using main.db;
 using functions.Endpoint;
+using Microsoft.AspNetCore.Identity;
+using Models.user;
+using data.DbSeeder;
+using data.Policies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,14 +16,31 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 builder.Services.AddOpenApi();
 builder.Services.AddValidation();
+builder.Services.AddIdentityApiEndpoints<User>()
+.AddRoles<IdentityRole>()
+.AddEntityFrameworkStores<PortDB>();
+
+
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
+builder.Services.AddAuthorizationBuilder()
+.AddPolicy(Policies.CanEditItem, policy => policy.RequireRole("Editor", "Admin"))
+.AddPolicy(Policies.CanCreateItem, policy => policy.RequireRole("Editor", "Admin"))
+.AddPolicy(Policies.CanDeleteItem, policy => policy.RequireRole("Editor", "Admin"));
+
+
+
 builder.Services.AddDbContext<PortDB>(
     options => options.UseNpgsql(connectionString));
 
 
+
 var app = builder.Build();
 
-app.MapAllEndpoints();
-
+app.UseHttpsRedirection();
+app.UseAuthentication();
+app.UseAuthorization();
+await DbSeeder.SeedAsync(app.Services);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -31,9 +52,11 @@ if (app.Environment.IsDevelopment())
 }
 
 
+
 app.UseHttpsRedirection();
 
 
+app.MapAllEndpoints();
 
 
 app.Run();
