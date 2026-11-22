@@ -21,7 +21,7 @@ public static async Task SeedAsync(IServiceProvider services)
 
         // const string adminRole = "Admin";
 
-        foreach(var role in new[] {"Admin", "Editor", "gast"})
+        foreach(var role in new[] {"Admin", "Editor", "Gast"})
         {
         if(!await roleManager.RoleExistsAsync(role))
         {
