@@ -14,6 +14,8 @@ using functions.PatchProject;
 using functions.PatchBlog;
 using functions.UserManager.RegisterUser;
 using Models.user;
+using functions.UserManager.LoginUser;
+using functions.UserManager.LogoutUser;
 
 
 namespace functions.Endpoint;
@@ -41,8 +43,8 @@ public static class Endpoints
         blogGroup.MapPatchBlogEndpoint();
         authGroup.MapIdentityApi<User>();
         UserManagerGroup.MapRegisterUserEndpoint();
-        
-        
+        UserManagerGroup.MapLoginUserEndpoint();
+        UserManagerGroup.MapLogoutUserEndpoint();
 
         return endpoints;
     }

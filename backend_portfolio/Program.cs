@@ -20,9 +20,16 @@ builder.Services.AddIdentityApiEndpoints<User>()
 .AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<PortDB>();
 
+builder.Services.Configure<SecurityStampValidatorOptions>(options =>
+{
+    options.ValidationInterval = TimeSpan.Zero;
+});
 
-builder.Services.AddAuthentication();
-builder.Services.AddAuthorization();
+
+
+
+// builder.Services.AddAuthentication();
+// builder.Services.AddAuthorization();
 builder.Services.AddAuthorizationBuilder()
 .AddPolicy(Policies.CanEditItem, policy => policy.RequireRole("Editor", "Admin"))
 .AddPolicy(Policies.CanCreateItem, policy => policy.RequireRole("Editor", "Admin"))
@@ -53,7 +60,7 @@ if (app.Environment.IsDevelopment())
 
 
 
-app.UseHttpsRedirection();
+
 
 
 app.MapAllEndpoints();

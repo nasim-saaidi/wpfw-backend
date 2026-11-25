@@ -10,6 +10,6 @@ public static class CreateProjectEndpoint
     public static RouteHandlerBuilder MapCreateProjectEndpoint(this RouteGroupBuilder routeGroupBuilder)
     {
         return routeGroupBuilder.MapPost("", CreateProjectHandler.CreateProjectHandle)
-        .WithName("CreateProject").RequireAuthorization();
+        .WithName("CreateProject").RequireAuthorization(Policies.CanCreateItem);
     }
 }

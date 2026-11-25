@@ -80,3 +80,57 @@ dotnet ef database update
 start de programma hiermee:
 
 dotnet watch --launch-profile https     
+
+OPDRACHT 4
+
+volg alle stappen uit de vorige opdracht om de api en database op te zetten. Als het nodig is doe nog een migratie om de gebruikers toe te voegen
+
+voer deze commando ook uit 
+
+dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+
+
+daarnaast moet je in de register 3 nieuwe accounts aanmaken, voer dit in:
+
+{
+  "email": "admin@wpfw.com",
+  "password": "Admin123!"
+}
+
+en dit
+
+{
+"email": "Editor@wpfw.com",
+"password" : "Editor123!"
+}
+
+en
+
+{
+"email": "Guest@wpfw.com",
+"password": "Guest123!"
+}
+
+
+voer daarna deze command uit in pgadmin
+
+UPDATE "AspNetUserRoles"
+SET "RoleId" = (SELECT "Id" FROM "AspNetRoles" WHERE "Name" = 'Editor')
+WHERE "UserId" = (SELECT "Id" FROM "AspNetUsers" WHERE "Email" = 'Editor@wpfw.com');
+
+UPDATE "AspNetUserRoles"
+SET "RoleId" = (SELECT "Id" FROM "AspNetRoles" WHERE "Name" = 'Admin')
+WHERE "UserId" = (SELECT "Id" FROM "AspNetUsers" WHERE "Email" = 'admin@wpfw.com');
+
+nu heb je een admin, editor en gast account
+
+om de tests uit te voeren, gebruik deze commando:
+dotnet test
+
+routes:
+
+
+
+    POST    /projects      | benodigde rol: ("Editor", "Admin")
+    GET     /projects      | benodigde  rol: n.v.t
+    DELETE  /projects/{id} | benodigde rol: ("Editor", "Admin")

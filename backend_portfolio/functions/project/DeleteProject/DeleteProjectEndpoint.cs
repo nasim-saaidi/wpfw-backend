@@ -1,5 +1,5 @@
 
-
+using data.Policies;
 namespace functions.DeleteProject;
 
 public static class DeleteProjectEndpoint
@@ -7,6 +7,6 @@ public static class DeleteProjectEndpoint
     public static RouteHandlerBuilder MapDeleteProjectEndpoint(this RouteGroupBuilder routeGroupBuilder)
     {
         return routeGroupBuilder.MapDelete("/{id:int}", DeleteProjectHandler.DeleteProjectHandle)
-        .WithName("DeleteProject");
+        .WithName("DeleteProject").RequireAuthorization(Policies.CanDeleteItem);
     }
 }
