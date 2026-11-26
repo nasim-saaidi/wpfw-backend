@@ -36,10 +36,8 @@ builder.Services.AddAuthorizationBuilder()
 .AddPolicy(Policies.CanDeleteItem, policy => policy.RequireRole("Editor", "Admin"));
 
 
-
-builder.Services.AddDbContext<PortDB>(
-    options => options.UseNpgsql(connectionString));
-
+builder.Services.AddDbContext<PortDB>((sp, options) =>
+    options.UseNpgsql(sp.GetRequiredService<IConfiguration>().GetConnectionString("DefaultConnection")));
 
 
 var app = builder.Build();
@@ -69,3 +67,5 @@ app.MapAllEndpoints();
 app.Run();
 
 //zoek naar de goede 
+
+public partial class Program { }
