@@ -12,7 +12,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddOpenApi();
 builder.Services.AddValidation();
@@ -35,9 +34,15 @@ builder.Services.AddAuthorizationBuilder()
 .AddPolicy(Policies.CanCreateItem, policy => policy.RequireRole("Editor", "Admin"))
 .AddPolicy(Policies.CanDeleteItem, policy => policy.RequireRole("Editor", "Admin"));
 
+builder.Configuration.AddUserSecrets<Program>(optional: true);
 
-builder.Services.AddDbContext<PortDB>((sp, options) =>
-    options.UseNpgsql(sp.GetRequiredService<IConfiguration>().GetConnectionString("DefaultConnection")));
+
+var connectionString = builder.Environment.IsEnvironment("Testing")
+    ? builder.Configuration.GetConnectionString("TestConnection")
+    : builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddDbContext<PortDB>(options =>
+    options.UseNpgsql(connectionString));
 
 
 var app = builder.Build();
@@ -45,7 +50,8 @@ var app = builder.Build();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-await DbSeeder.SeedAsync(app.Services);
+ await DbSeeder.SeedAsync(app.Services);
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

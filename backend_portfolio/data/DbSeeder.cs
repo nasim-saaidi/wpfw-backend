@@ -29,28 +29,7 @@ public static async Task SeedAsync(IServiceProvider services)
 
         }}
 
-        // var adminUser = await userManager.FindByEmailAsync("admin@wpfw.com");
-        // if (adminUser is null)
-        // {
-        //     adminUser = new User
-        //     {
-        //         UserName = "admin@wpfw.com",
-        //         Email = "admin@wpfw.com",
-        //         EmailConfirmed = true
-        //     };
-        //     await userManager.CreateAsync(
-        //         adminUser,
-        //         "Admin123!"
-        //     );
-        // }
-
-        // if(!await userManager.IsInRoleAsync(adminUser, adminRole))
-        // {
-        //     await userManager.AddToRoleAsync(
-        //         adminUser,
-        //         adminRole
-        //     );
-        // }
+    
 
     }
 }

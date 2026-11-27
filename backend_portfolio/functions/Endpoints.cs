@@ -16,6 +16,7 @@ using functions.UserManager.RegisterUser;
 using Models.user;
 using functions.UserManager.LoginUser;
 using functions.UserManager.LogoutUser;
+using functions.UserManager.Me;
 
 
 namespace functions.Endpoint;
@@ -45,7 +46,7 @@ public static class Endpoints
         UserManagerGroup.MapRegisterUserEndpoint();
         UserManagerGroup.MapLoginUserEndpoint();
         UserManagerGroup.MapLogoutUserEndpoint();
-
+        UserManagerGroup.MapGetUserEndpoint();
         return endpoints;
     }
 }

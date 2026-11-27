@@ -18,8 +18,8 @@ public class ApiFactory : WebApplicationFactory<Program>
     {
         builder.UseEnvironment("Testing");
         builder.ConfigureAppConfiguration((context, config) =>
-{
-    config.AddUserSecrets<Program>();
+{      
+        config.AddUserSecrets<Program>();
 });
     }
 
@@ -29,9 +29,11 @@ public class ApiFactory : WebApplicationFactory<Program>
 
         using var scope = host.Services.CreateScope();
         var db = scope.ServiceProvider.GetRequiredService<PortDB>();
-
-
+     
+        db.Database.EnsureDeleted();
         db.Database.Migrate();
+        data.DbSeeder.DbSeeder.SeedAsync(host.Services).GetAwaiter().GetResult();
+
 
         return host;
     }

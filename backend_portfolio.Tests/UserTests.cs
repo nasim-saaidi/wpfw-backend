@@ -7,6 +7,7 @@ using TestAPI.Tests;
 
 namespace backend_portfolio.Tests;
 
+[Collection("Api")]
 public class UserTests(ApiFactory factory) : IClassFixture<ApiFactory>
 {
     [Fact]
@@ -75,6 +76,19 @@ public class UserTests(ApiFactory factory) : IClassFixture<ApiFactory>
 
         // Act
         var response = await client.PostAsJsonAsync("UserManager/login", new { email, password = wrongPassword });
+
+        // Assert
+        Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task Me_zonderlogin_geeft401()
+    {
+        //arrange
+        var client = factory.CreateClient();
+
+        // Act
+        var response = await client.GetAsync("/UserManager/me");
 
         // Assert
         Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);

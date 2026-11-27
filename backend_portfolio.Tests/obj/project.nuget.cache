@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "v4iqGbgVa/c=",
+  "dgSpecHash": "31C6tk8b7es=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Gebruiker\\coderen\\wpfw-backend\\backend_portfolio.tests\\backend_portfolio.Tests.csproj",
+  "projectFilePath": "C:\\Users\\Gebruiker\\coderen\\wpfw-backend\\backend_portfolio.Tests\\backend_portfolio.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Gebruiker\\.nuget\\packages\\castle.core\\5.2.1\\castle.core.5.2.1.nupkg.sha512",
     "C:\\Users\\Gebruiker\\.nuget\\packages\\coverlet.collector\\6.0.4\\coverlet.collector.6.0.4.nupkg.sha512",
@@ -73,9 +73,9 @@
       "code": "NU1903",
       "level": "Warning",
       "message": "Package 'Microsoft.OpenApi' 2.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-v5pm-xwqc-g5wc",
-      "projectPath": "C:\\Users\\Gebruiker\\coderen\\wpfw-backend\\backend_portfolio.tests\\backend_portfolio.Tests.csproj",
+      "projectPath": "C:\\Users\\Gebruiker\\coderen\\wpfw-backend\\backend_portfolio.Tests\\backend_portfolio.Tests.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\Gebruiker\\coderen\\wpfw-backend\\backend_portfolio.tests\\backend_portfolio.Tests.csproj",
+      "filePath": "C:\\Users\\Gebruiker\\coderen\\wpfw-backend\\backend_portfolio.Tests\\backend_portfolio.Tests.csproj",
       "libraryId": "Microsoft.OpenApi",
       "targetGraphs": [
         "net10.0"

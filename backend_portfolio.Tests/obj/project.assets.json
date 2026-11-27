@@ -3232,11 +3232,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Gebruiker\\coderen\\wpfw-backend\\backend_portfolio.tests\\backend_portfolio.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\Gebruiker\\coderen\\wpfw-backend\\backend_portfolio.Tests\\backend_portfolio.Tests.csproj",
       "projectName": "backend_portfolio.Tests",
-      "projectPath": "C:\\Users\\Gebruiker\\coderen\\wpfw-backend\\backend_portfolio.tests\\backend_portfolio.Tests.csproj",
+      "projectPath": "C:\\Users\\Gebruiker\\coderen\\wpfw-backend\\backend_portfolio.Tests\\backend_portfolio.Tests.csproj",
       "packagesPath": "C:\\Users\\Gebruiker\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Gebruiker\\coderen\\wpfw-backend\\backend_portfolio.tests\\obj\\",
+      "outputPath": "C:\\Users\\Gebruiker\\coderen\\wpfw-backend\\backend_portfolio.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Gebruiker\\AppData\\Roaming\\NuGet\\NuGet.Config"
