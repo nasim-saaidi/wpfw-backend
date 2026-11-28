@@ -27,7 +27,6 @@ public static class Endpoints
     {
         RouteGroupBuilder projectGroup = endpoints.MapGroup("/projects");
         RouteGroupBuilder blogGroup = endpoints.MapGroup("/blogs");
-        RouteGroupBuilder authGroup = endpoints.MapGroup("/auth");
         RouteGroupBuilder UserManagerGroup = endpoints.MapGroup("/UserManager");
 
         projectGroup.MapCreateProjectEndpoint();
@@ -42,7 +41,6 @@ public static class Endpoints
         blogGroup.MapGetBlogEndpoint();
         blogGroup.MapUpdateBlogEndpoint();
         blogGroup.MapPatchBlogEndpoint();
-        authGroup.MapIdentityApi<User>();
         UserManagerGroup.MapRegisterUserEndpoint();
         UserManagerGroup.MapLoginUserEndpoint();
         UserManagerGroup.MapLogoutUserEndpoint();

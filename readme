@@ -60,20 +60,18 @@ sql server configureren/db aanmaken:
 
 vul  dit in de terminal
 
-cd backend_portfolio;
-dotnet add package Microsoft.Extensions.Validation --version 10.0.0
-dotnet add package Microsoft.AspNetCore.OpenApi --version 10.0.0
-dotnet add package Swashbuckle.AspNetCore.SwaggerUI --version 10.0.0
-dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL --version 10.0.0
-dotnet add package Microsoft.EntityFrameworkCore.Design --version 10.0.0
+cd wpfw-backend
+dotnet restore
+dotnet tool install --global dotnet-ef --version 10.0.0
+
+
 
 
 maak een database genaamd PortDB aan in pgadmin
 
+cd backend_portfolio
 dotnet user-secrets init
-dotnet user-secrets set "ConnectionStrings:PortDB" "Host=localhost;Port=5432;Database=PortDB;Username=postgres;Password=nas5"
-dotnet restore
-dotnet tool install --global dotnet-ef --version 10.0.0
+dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Host=localhost;Port=5432;Database=PortDB;Username=postgres;Password=JOUW_WACHTWOORD"
 dotnet ef database update
 (er kan een fail tevoorschijn komen, dit heeft te maken met de migratie, de migratie wordt nog steeds toegepast)
 
@@ -83,11 +81,17 @@ dotnet watch --launch-profile https
 
 OPDRACHT 4
 
-volg alle stappen uit de vorige opdracht om de api en database op te zetten. Als het nodig is doe nog een migratie om de gebruikers toe te voegen
 
-voer deze commando ook uit 
+voer deze commando uit voor de users
 
-dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+dotnet restore
+dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore --version 10.0.0
+
+
+Maak een database genaamd "PortDB_test" en voer deze commando's uit:
+
+dotnet user-secrets set "ConnectionStrings:TestConnection" "Host=localhost;Port=5432;Database=PortDB_Test;Username=postgres;Password=JOUW_WACHTWOORD" --project backend_portfolio
+
 
 
 daarnaast moet je in de register 3 nieuwe accounts aanmaken, voer dit in:
@@ -125,12 +129,100 @@ WHERE "UserId" = (SELECT "Id" FROM "AspNetUsers" WHERE "Email" = 'admin@wpfw.com
 nu heb je een admin, editor en gast account
 
 om de tests uit te voeren, gebruik deze commando:
+
+cd ..
 dotnet test
 
-routes:
 
 
 
-    POST    /projects      | benodigde rol: ("Editor", "Admin")
-    GET     /projects      | benodigde rol: n.v.t
-    DELETE  /projects/{id} | benodigde rol: ("Editor", "Admin")
+
+
+
+//na rol wijziging forced loguit?
+
+
+
+    coverage:
+
+vooer het testen van mijn api heb ik gekozen voor integratietests met xUnit.
+Mijn tests controleren of de verschillende onderdelen van de applicatie (create/get/login/register/update/delete/me) goed samenwerken.
+Voor deze tests heb ik een aparte database gebruikt. De tests sturen http verzoeken naar de APi.
+Hierdoor test ik niet alleen de aparte methodes, maar ook de samenwerking tussen bijv. identity, endpoints, dto's en de database.
+Ook kan ik hierdoor de authenticatie en autorisatie goed testen.
+
+per crud route test ik op de verschillende scenario's getest:
+
+-niet ingelogd(401 Unauthorized)
+-onjuiste schrijfrechten(403 forbidden)
+-juiste schrijfrechten(200 OK,201 created,204 nocontent)
+-ongeldig invoer(400 BadRequest)
+-onbekend id(404 notfount)
+-gemaakte/aangepaste object gevonden/niet gevonden(in geval van dto)
+
+dit is de scructuur van de testen voor de project en blogs:
+
+POST:
+
+-geen login
+-geen rechten
+-ongeldig
+-success(test ook of uitkomst gevonden kan worden)
+
+GET lijst:
+-succes
+
+GET {id}:
+-gevonden
+-niet gevonden
+
+PUT {id}:
+-geen rechten
+-niet gevonden
+-geen login
+-success(test ook of verandering plaats vind)
+
+PATCH {id}:
+-geen rechten
+-niet gevonden
+-geen login
+-success(test ook of verandering plaats vind)
+
+DELETE{id}:
+-geen login
+-geen rechten
+-niet gevonden
+-success(test daarna ook of de object niet meer gevonden kan worden)
+
+voor de register,login,me en logout is het:
+
+REGISTER:
+-success(ook of de gebruiker echt bestaat)
+-ongeldig invoer
+
+LOGIN:
+-success(en of de gebruiker echt is ingelogd)
+-ongeldig invoer/fout wachtwoord
+
+ME:
+-success
+-geen login
+
+LOGOUT:
+-success
+-niet ingelogd
+
+
+in totaal heb ik 59 tests gemaakt
+8 in usertests
+25 in projectTests
+26 in blogTests
+
+
+
+
+
+
+
+Met deze tests controleer ik zowel de succesvolle werking van de API als de afhandeling van foutscenario's, authenticatie en autorisatie. 
+Daarnaast controleer ik bij schrijfverzoeken of de wijzigingen daadwerkelijk in de database zijn verwerkt.

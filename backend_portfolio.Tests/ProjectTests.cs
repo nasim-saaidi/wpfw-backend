@@ -142,7 +142,7 @@ public class ProjectsTests(ApiFactory factory) : IClassFixture<ApiFactory>{
     public async Task update_zonder_login_401()
     {
         //Arrange
-        var client = factory.CreateClient();
+        var client = await factory.MaakClientAsync();
         var project = await MaakProject("testproject");
 
         //Act

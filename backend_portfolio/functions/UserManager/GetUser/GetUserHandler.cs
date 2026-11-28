@@ -12,7 +12,7 @@ public static class GetUserHandler
         ClaimsPrincipal user
     )
     {
-       return TypedResults.Ok(new { name = user.Identity?.Name });
+       return TypedResults.Ok(new GetUserResponse(user.Identity?.Name));
 
     }
 }

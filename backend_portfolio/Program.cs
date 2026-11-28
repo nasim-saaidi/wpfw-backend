@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Identity;
 using Models.user;
 using data.DbSeeder;
 using data.Policies;
+using System.Security.Claims;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,20 +21,37 @@ builder.Services.AddIdentityApiEndpoints<User>()
 .AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<PortDB>();
 
+
+string editor = "Editor";
+string admin = "Admin";
+
+builder.Services.AddAuthorizationBuilder()
+.AddPolicy(Policies.CanEditItem, policy => policy.RequireRole(editor, admin))
+.AddPolicy(Policies.CanCreateItem, policy => policy.RequireRole(editor, admin))
+.AddPolicy(Policies.CanDeleteItem, policy => policy.RequireRole(editor, admin));
+
+var policyVersion = "2";
+
+
 builder.Services.Configure<SecurityStampValidatorOptions>(options =>
 {
     options.ValidationInterval = TimeSpan.Zero;
+
+    options.OnRefreshingPrincipal = context =>
+{
+    var roleInCookie = context.CurrentPrincipal?.FindFirstValue(ClaimTypes.Role);
+    var roleInDatabase = context.NewPrincipal?.FindFirstValue(ClaimTypes.Role);
+    var policyInCookie = context.CurrentPrincipal?.FindFirstValue("policy_version");
+
+    if (roleInCookie != roleInDatabase ||
+        (policyInCookie is not null && policyInCookie != policyVersion))
+        context.NewPrincipal = null;
+
+    context.NewPrincipal?.Identities.First().AddClaim(new Claim("policy_version", policyVersion));
+
+    return Task.CompletedTask;
+};
 });
-
-
-
-
-// builder.Services.AddAuthentication();
-// builder.Services.AddAuthorization();
-builder.Services.AddAuthorizationBuilder()
-.AddPolicy(Policies.CanEditItem, policy => policy.RequireRole("Editor", "Admin"))
-.AddPolicy(Policies.CanCreateItem, policy => policy.RequireRole("Editor", "Admin"))
-.AddPolicy(Policies.CanDeleteItem, policy => policy.RequireRole("Editor", "Admin"));
 
 builder.Configuration.AddUserSecrets<Program>(optional: true);
 

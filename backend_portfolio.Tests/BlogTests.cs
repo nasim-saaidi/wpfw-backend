@@ -29,7 +29,7 @@ public class BlogsTests(ApiFactory factory) : IClassFixture<ApiFactory>
     }
 
     [Fact]
-    public async Task GetAll_zonder_login_geeft_blogs()
+    public async Task GetAll_zonder_login_geeft_blogs_200()
     {
         // Arrange
         var blog = await MaakBlog("blog voor getall test");
@@ -153,7 +153,7 @@ public class BlogsTests(ApiFactory factory) : IClassFixture<ApiFactory>
     public async Task update_zonder_login_401()
     {
         // Arrange
-        var client = factory.CreateClient();
+        var client = await factory.MaakClientAsync();
         var blog = await MaakBlog("testblog");
 
         // Act
@@ -200,7 +200,7 @@ public class BlogsTests(ApiFactory factory) : IClassFixture<ApiFactory>
     [Theory]
     [InlineData("Editor")]
     [InlineData("Admin")]
-    public async Task Put_met_goede_rol_204(string rol)
+    public async Task Update_met_goede_rol_204(string rol)
     {
         // Arrange
         var blog = await MaakBlog("Oude titel");
@@ -218,7 +218,7 @@ public class BlogsTests(ApiFactory factory) : IClassFixture<ApiFactory>
     }
 
     [Fact]
-    public async Task Put_OnbekendId_404()
+    public async Task Update_OnbekendId_404()
     {
         // Arrange
         var client = await factory.MaakClientAsync("Editor");
@@ -307,7 +307,7 @@ public class BlogsTests(ApiFactory factory) : IClassFixture<ApiFactory>
     }
 
     [Fact]
-    public async Task Patch_als_gast_401()
+    public async Task Patch_als_gast_403()
     {
         // Arrange
         var client = await factory.MaakClientAsync("Gast");
