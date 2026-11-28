@@ -22,15 +22,20 @@ builder.Services.AddIdentityApiEndpoints<User>()
 .AddEntityFrameworkStores<PortDB>();
 
 
-string editor = "Editor";
-string admin = "Admin";
+var Admin = "Admin";
+var Editor = "Editor";
+
+string[] canEditRoles = [Editor, Admin];
+string[] canCreateRoles = [Editor, Admin];
+string[] canDeleteRoles = [Editor, Admin];
+
 
 builder.Services.AddAuthorizationBuilder()
-.AddPolicy(Policies.CanEditItem, policy => policy.RequireRole(editor, admin))
-.AddPolicy(Policies.CanCreateItem, policy => policy.RequireRole(editor, admin))
-.AddPolicy(Policies.CanDeleteItem, policy => policy.RequireRole(editor, admin));
+.AddPolicy(Policies.CanEditItem, policy => policy.RequireRole(canEditRoles))
+.AddPolicy(Policies.CanCreateItem, policy => policy.RequireRole(canCreateRoles))
+.AddPolicy(Policies.CanDeleteItem, policy => policy.RequireRole(canDeleteRoles));
 
-var policyVersion = "2";
+var policyVersion = string.Join(",", canEditRoles) + "|" + string.Join(",", canCreateRoles) + "|" + string.Join(",", canDeleteRoles);
 
 
 builder.Services.Configure<SecurityStampValidatorOptions>(options =>
